@@ -1,12 +1,19 @@
 version: '3'
-services: 
+services:
+    nginx:
+      build:
+        dockerfile: Dockerfile.dev
+        context: ./nginx
+      restart: always
+      ports:
+        - '3010:80'
     postgres:
       image: 'postgres:latest'
       environment:
         - POSTGRES_PASSWORD=postgres_password
     redis:
       image: 'redis:latest'
-    server:
+    api:
       build:
         dockerfile: Dockerfile.dev
         context: ./server
@@ -24,10 +31,10 @@ services:
     client:
       build: 
         dockerfile: Dockerfile.dev
-        context: ./react_app
+        context: ./react-app
       volumes: 
         - /app/node_modules
-        - ./react_app:/app
+        - ./react-app:/app
     worker:
       build: 
         dockerfile: Dockerfile.dev
