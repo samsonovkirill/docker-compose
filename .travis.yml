@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t kvsamsonov/react-test -f ./client/Dockerfile.dev ./react-app
+  - docker build -t kvsamsonov/react-test -f ./react-app/Dockerfile.dev ./react-app
 
 script:
   - docker run -e CI=true kvsamsonov/react-test npm test
