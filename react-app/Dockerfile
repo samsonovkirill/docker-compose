@@ -3,8 +3,8 @@ FROM node:alpine as builder
 WORKDIR /app
 COPY ./package.json ./
 RUN npm install --silent
-CMD ["npm", "run", "build"]
 COPY . .
+CMD ["npm", "run", "build"]
 
 FROM nginx
 EXPOSE 3000
