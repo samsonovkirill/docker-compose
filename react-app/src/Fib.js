@@ -15,7 +15,9 @@ const Fib = () => {
       const values = await fetchValues();
       const seenIndexes = await fetchIndexes();
       setValues(values.data);
-      setSeenIndexes(seenIndexes.data);
+      if (Array.isArray(seenIndexes)) {
+        setSeenIndexes(seenIndexes.data);
+      }
     }
     fetchApi();
   }, [fetchValues, fetchIndexes]);
